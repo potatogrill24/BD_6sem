@@ -1,7 +1,9 @@
 # === ИНДЕКСЫ ===
 
-## Для запуска файла ввести команду:
-### docker exec -i store_db psql -U postgres -d store < tasks/indexes.sql 
+### Для запуска файла ввести команду: 
+`
+docker exec -i store_db psql -U postgres -d store < tasks/indexes.sql
+`
 
 
 **Запрос на выборку заказов (orders) по дате:**
@@ -52,17 +54,21 @@
 
 # === ТРАНЗАКЦИИ ===
 
-## Для запуска файла ввести команды:
-### 1) docker exec -it store_db psql -U postgres -d store
-### 2) docker exec -it store_db psql -U postgres -d store (в другом терминале)
+### Для запуска файла ввести команды:
+`
+#1) docker exec -it store_db psql -U postgres -d store
+#2) docker exec -it store_db psql -U postgres -d store (в другом терминале)
+`
 
 Далее запускать транзакции по блокам и смотреть, что будет с БД. Проверить все аномалии.
 
 
 # === РАСШИРЕНИЯ ===
 
-## Для запуска файла ввести команду:
-### docker exec -i store_db psql -U postgres -d store < tasks/extensions.sql
+### Для запуска файла ввести команду:
+`
+docker exec -i store_db psql -U postgres -d store < tasks/extensions.sql
+`
 
 ## Плюсы и минусы использования pg_bigm, pg_trgm
 - `pg_trgm` лучше использовать для похожих форм слов и "умного" поиска.
