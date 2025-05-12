@@ -56,8 +56,10 @@ docker exec -i store_db psql -U postgres -d store < tasks/indexes.sql
 
 ### Для запуска файла ввести команды:
 ```bash
-# 1) docker exec -it store_db psql -U postgres -d store
-# 2) docker exec -it store_db psql -U postgres -d store (в другом терминале)
+# В одном терминале (Сессия A)
+docker exec -it store_db psql -U postgres -d store
+# В другом терминале (Сессия B)
+docker exec -it store_db psql -U postgres -d store
 ```
 
 Далее запускать транзакции по блокам и смотреть, что будет с БД. Проверить все аномалии.
