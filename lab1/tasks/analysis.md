@@ -1,7 +1,7 @@
-# === ИНДЕКСЫ ===
+# ИНДЕКСЫ
 
 ### Для запуска файла ввести команду: 
-`
+```bash
 docker exec -i store_db psql -U postgres -d store < tasks/indexes.sql
 `
 
@@ -52,21 +52,21 @@ docker exec -i store_db psql -U postgres -d store < tasks/indexes.sql
 Индексы значительно улучшили время выполнения запросов, особенно для фильтров по полям email, last_name, и comment. Они позволяют PostgreSQL быстро находить нужные строки, избегая полного сканирования таблицы. Для некоторых запросов ускорение довольно заметное, например, для поиска по email и фамилии.
 
 
-# === ТРАНЗАКЦИИ ===
+# ТРАНЗАКЦИИ
 
 ### Для запуска файла ввести команды:
-`
-#1) docker exec -it store_db psql -U postgres -d store
-#2) docker exec -it store_db psql -U postgres -d store (в другом терминале)
+```bash
+# 1) docker exec -it store_db psql -U postgres -d store
+# 2) docker exec -it store_db psql -U postgres -d store (в другом терминале)
 `
 
 Далее запускать транзакции по блокам и смотреть, что будет с БД. Проверить все аномалии.
 
 
-# === РАСШИРЕНИЯ ===
+# РАСШИРЕНИЯ
 
 ### Для запуска файла ввести команду:
-`
+```bash
 docker exec -i store_db psql -U postgres -d store < tasks/extensions.sql
 `
 
