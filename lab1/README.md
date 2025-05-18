@@ -34,5 +34,5 @@ docker-compose down -v && docker-compose build && docker-compose up -d
 docker exec -it store_db psql -U postgres -d store
 
 ```
-**Больше команд в файле tasks/analysis.md**
+**Отчет по выполненной работе описан в tasks/README.md**
 
