@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: comp_club_db
+    environment:
+      POSTGRES_DB: postgre
+      POSTGRES_USER: postgre
+      POSTGRES_PASSWORD: postgre
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:7-alpine
+    container_name: comp_club_redis
+    ports:
+      - "6379:6379"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: comp_club_app
+    environment:
+      - POSTGRES_DB=postgre
+      - POSTGRES_USER=postgre
+      - POSTGRES_PASSWORD=postgre
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - TOKEN_TTL=3600
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+
+  listener:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: comp_club_listener
+    command: python listener.py
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
